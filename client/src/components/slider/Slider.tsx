@@ -1,12 +1,17 @@
+"use client"
 import React from 'react';
 import Image from 'next/image';
-import Slider from 'react-slick'
+import Slider from 'react-slick';
 import "slick-carousel/slick/slick.scss";
 import "slick-carousel/slick/slick-theme.scss";
 import './slider.scss';
 
 const SimpleSlider = () => {
-  const image = '/images/image-slider.jpg';
+  const images = ['/images/slider-image/image-slider1.jpg', 
+  '/images/slider-image/image-slider2.jpg', 
+  '/images/slider-image/image-slider3.jpg', 
+  '/images/slider-image/image-slider4.jpg', 
+  '/images/slider-image/image-slider5.jpg'];
 
   const settings = {
     dots: true,
@@ -19,9 +24,11 @@ const SimpleSlider = () => {
   return (
     <div className='banner-section__slider'>
       <Slider {...settings}>
-        <div className="banner-section__slider-item">
-          <Image className='banner-section__slider-img' src={image} width={870} height={400} alt='image-slider' />
-        </div>
+        {images.map((image, index) => (
+          <div className="banner-section__slider-item" key={index}>
+            <Image className='banner-section__slider-img' src={image} width={870} height={400} alt='image-slider' />
+          </div>
+        ))}
       </Slider>
     </div>
   );
