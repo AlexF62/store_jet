@@ -9,6 +9,7 @@ html{
 a{
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
 }
 
 p{
@@ -68,4 +69,8 @@ body{
 .banner-section__inner{
     display: flex;
     justify-content: space-between;
+}
+
+.page-section{
+    margin-bottom: 80px;
 }
