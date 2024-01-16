@@ -7,11 +7,8 @@ import "slick-carousel/slick/slick-theme.scss";
 import './slider.scss';
 
 const SimpleSlider = () => {
-  const images = ['/images/slider-image/image-slider1.jpg', 
-  '/images/slider-image/image-slider2.jpg', 
-  '/images/slider-image/image-slider3.jpg', 
-  '/images/slider-image/image-slider4.jpg', 
-  '/images/slider-image/image-slider5.jpg'];
+  const imageSlide = '/images/slider-image/image-slider.jpg'; // Replace with your actual image URL
+  const images = Array(5).fill(imageSlide);
 
   const settings = {
     dots: true,
@@ -35,3 +32,4 @@ const SimpleSlider = () => {
 }
 
 export default SimpleSlider;
+
