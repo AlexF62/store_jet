@@ -11,7 +11,7 @@ export default function Page() {
        <><section className="banner-section page-section">
       <div className="container">
         <div className="banner-section__inner">
-          <Slider />
+          {/* <Slider /> */}
           <Banner />
          
 

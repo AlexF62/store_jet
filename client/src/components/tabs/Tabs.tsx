@@ -31,14 +31,10 @@ const TabsPage = () => {
       </div>
 
       <div className="search__content">
-        {tabs.map((tab) => (
-          <div key={tab.index} className={`search__content-item ${activeTab === tab.index ? 'active' : ''}`}>
-            <form className='search__content-form'>
-              <input className='search__content-input' type="text" placeholder={`Введите ${tab.label.split(' ')[2].toLowerCase()}`}/>
-              <button className='search__content-btn' type='submit'>искать</button>
-            </form>
-          </div>
-        ))}
+        <form className='search__content-form'>
+          <input className='search__content-input' type="text" placeholder={`Введите ${tabs[activeTab - 1].label.split(' ')[2].toLowerCase()}`}/>
+          <button className='search__content-btn' type='submit'>искать</button>
+        </form>
       </div>
     </div>
   );

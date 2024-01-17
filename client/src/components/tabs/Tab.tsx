@@ -1,6 +1,4 @@
-// Tab.jsx
 import React from 'react';
-
 interface TabProps {
   index: number;
   activeTab: number;
