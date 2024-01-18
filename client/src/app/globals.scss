@@ -1,5 +1,3 @@
-
-
 html{
     box-sizing: border-box;
 }
@@ -11,6 +9,11 @@ html{
 a{
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
+}
+
+p{
+    margin: 0;
 }
 
 ul,
@@ -61,4 +64,13 @@ body{
     font-display: swap;
    src: url(/fonts/SFProDisplay-Bold.woff2) format(woff2)
   
+}
+
+.banner-section__inner{
+    display: flex;
+    justify-content: space-between;
+}
+
+.page-section{
+    margin-bottom: 80px;
 }
