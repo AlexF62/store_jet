@@ -1,0 +1,17 @@
+.products__title{
+color:#2F3035;
+font-size: 25px;
+font-weight: 700;
+margin-bottom: 25px;
+}
+
+.products__tabs{
+margin-bottom: 25px;
+
+}
+.products__tab{
+margin-right: 50px;
+&:hover{
+    border-bottom: 2px solid #1C62CD;
+}
+}
