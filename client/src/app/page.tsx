@@ -2,7 +2,7 @@ import Slider from 'react-slick'
 import './globals.scss'
 import Banner from '@/components/banner/Banner'
 import TabsPage from '@/components/tabs/Tabs'
-import Category from '@/components/category/Category'
+import Categories from '@/components/category/Category'
 
 export default function Page() {
   
@@ -24,10 +24,11 @@ export default function Page() {
       
       <div className="section categories page-section">
         <div className="container">
-        <Category/>
+       <Categories  />
         </div>
       </div>
       </>
 )
   }
  
+  

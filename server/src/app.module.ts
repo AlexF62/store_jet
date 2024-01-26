@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-
-
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
@@ -10,16 +8,14 @@ import { PaginationModule } from './pagination/pagination.module';
 import { OrderModule } from './order/order.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { path } from 'app-root-path';
-
-
 @Module({
-  imports: [ConfigModule.forRoot(),AuthModule, UserModule, ProductModule, CategoryModule, PaginationModule, OrderModule,
-  ServeStaticModule.forRoot({
-    rootPath: `${path}/uploads`,
-    serveRoot: '/uploads'
-  }),
- ],
-
- 
+  imports: [
+    ServeStaticModule.forRoot({
+      rootPath: `${path}/uploads`,
+      serveRoot: '/uploads'
+   }),
+   
+     ConfigModule.forRoot(),AuthModule, UserModule, ProductModule, CategoryModule, PaginationModule, OrderModule,],
 })
+
 export class AppModule {}
