@@ -1,16 +1,13 @@
 'use client'
 import Link from 'next/link'
 import './category.scss'
-import useCategory from '@/hooks/useCategory'
 import Image from 'next/image'
+import { useGetAllQuery } from '@/services/category.service';
 
-const Categories: React.FC = () => {
- const {isLoading, error, data} = useCategory()
+const Categories = () => {
+const { data} =  useGetAllQuery() 
 
-  if (isLoading) return 'Loading...';
-  if (error) return 'An error has occurred: ' + error.message;
-
-  return (
+return (
     <div className='categories__inner'>
       {data?.map((index) => (
         <div className="categories__items" key={index.id}>
@@ -20,7 +17,7 @@ const Categories: React.FC = () => {
               <a className="categories__item-text">Подробнее</a>
             </div>
             <div className="categories__item-img">
-            <Image className='categories__item-img' src={`/images/category/${encodeURIComponent(index.slug.replace(/\//g, ''))}.png`} alt="category-image" width={120} height={81} />
+            <Image className='categories__item-img' src={`/images/category/${encodeURIComponent(index.slug.replace(/\//g, ''))}.png` } alt="category-image" width={120} height={81} /> 
               </div>
           </Link>
         </div>
@@ -30,5 +27,3 @@ const Categories: React.FC = () => {
 };
 
 export default Categories;
-
-

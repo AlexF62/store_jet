@@ -1,40 +1,47 @@
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { ICategory } from '@/store/types/category.interface';
 
-import { ICategory } from "@/store/types/category.interface";
-import axios from "axios";
+export const categoryApi = createApi({
+  reducerPath: 'categoryApi',
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.SERVER_URL }),
+  endpoints: (builder) => ({
+    getAll: builder.query<ICategory[], void>({
+      query: () => 'categories?public=photos',
+    }),
+    getById: builder.query<ICategory, string | number>({
+      query: (id) => `${id}`,
+    }),
+    getBySlug: builder.query<ICategory, string>({
+      query: (slug) => `by-slug/${slug}`,
+    }),
+    create: builder.mutation<ICategory, { slug: string }>({
+      query: ({ slug }) => ({
+        url: '',
+        method: 'POST',
+        body: { slug },
+      }),
+    }),
+    update: builder.mutation<ICategory, { id: string | number; name: string }>({
+      query: ({ id, name }) => ({
+        url: `${id}`,
+        method: 'PUT',
+        body: { name },
+      }),
+    }),
+    delete: builder.mutation<ICategory, string | number>({
+      query: (id) => ({
+        url: `${id}`,
+        method: 'DELETE',
+      }),
+    }),
+  }),
+});
 
-export const CategoryService = (() => {
-  const URL = process.env.SERVER_URL;
-
-  return {
-    async getAll() {
-      return axios.get<ICategory[]>(`${URL}/categories?public=photos`);
-    },
-
-    async getById(id: string | number) {
-      return axios.get<ICategory>(`${URL}/${id}`);
-        },
-
-    async getBySlug(slug: string) {
-      return axios.get<ICategory>( `${URL}/by-slug/${slug}`
-      );
-    },
-
-    async create(slug: string) {
-      return axios.post<ICategory>(`${URL}`);
-    },
-
-    async update(id: string | number, name: string) {
-      return axios.put<ICategory>(`${URL}/${id}`);
-        },
-
-    async delete(id: string | number) {
-      return axios.delete<ICategory>(`${URL}/${id}`);
-       },
-  };
-})();
-
-
-
-
-  
-
+export const {
+  useGetAllQuery,
+  useGetByIdQuery,
+  useGetBySlugQuery,
+  useCreateMutation,
+  useUpdateMutation,
+  useDeleteMutation,
+} = categoryApi;
