@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import './globals.scss';
 import Banner from '@/components/banner/Banner';
 import TabsPage from '@/components/tabs/Tabs';
-import Loading from '@/util/Loading';
+import Loading from '@/UI/Loading';
 import Categories from '@/components/category/Category';
 import Products from '@/components/products/Products';
 

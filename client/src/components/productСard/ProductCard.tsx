@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import Favorite from '@/util/Favorite';
-import Cart from '@/util/Cart';
+import Favorite from '@/UI/Favorite';
+import Cart from '@/UI/Cart';
 import { useGetAllQuery } from '@/services/product.service';
 import './product.scss';
 
