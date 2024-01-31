@@ -1,4 +1,5 @@
 import React from 'react';
+import './tabs.scss';
 interface TabProps {
   index: number;
   activeTab: number;
@@ -7,10 +8,12 @@ interface TabProps {
 }
 
 const Tab: React.FC<TabProps> = ({ index, activeTab, onClick, label }) => (
-  <a onClick={() => onClick(index)} className={activeTab === index ? 'active' : 'search__tabs-item'}>
+  <a
+    onClick={() => onClick(index)}
+    className={`search__tabs-item ${activeTab === index ? 'active' : ''}`}
+  >
     {label}
   </a>
 );
 
 export default Tab;
-

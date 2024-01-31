@@ -5,6 +5,7 @@ import Banner from '@/components/banner/Banner';
 import TabsPage from '@/components/tabs/Tabs';
 import Loading from '@/util/Loading';
 import Categories from '@/components/category/Category';
+import Products from '@/components/products/Products';
 
 export default function Page() {
   return (
@@ -31,6 +32,12 @@ export default function Page() {
           </Suspense>
         </div>
       </div>
+
+      <section className="products">
+        <div className="container">
+          <Products/>
+        </div>
+      </section>
     </>
   );
 }
