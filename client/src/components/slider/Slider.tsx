@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.scss";
 import './slider.scss';
 
 const SimpleSlider = () => {
-  const imageSlide = '/images/slider-image/image-slider.jpg'; // Replace with your actual image URL
+  const imageSlide = '/images/slider-image/image-slider.jpg'; 
   const images = Array(5).fill(imageSlide);
 
   const settings = {

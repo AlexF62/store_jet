@@ -1,11 +1,12 @@
 import React, { Suspense, lazy } from 'react';
-import Slider from 'react-slick';
 import './globals.scss';
 import Banner from '@/components/banner/Banner';
 import TabsPage from '@/components/tabs/Tabs';
 import Loading from '@/UI/Loading';
 import Categories from '@/components/category/Category';
 import Products from '@/components/products/Products';
+import SimpleSlider from '@/components/slider/Slider';
+import SaleBanner from '@/components/sale/SaleBanner';
 
 export default function Page() {
   return (
@@ -13,7 +14,7 @@ export default function Page() {
       <section className="banner-section page-section">
         <div className="container">
           <div className="banner-section__inner">
-            {/* <Slider /> */}
+            <SimpleSlider/>
             <Banner />
           </div>
         </div>
@@ -35,9 +36,16 @@ export default function Page() {
 
       <section className="products">
         <div className="container">
-          <Products/>
+          <Products title={'Популярные товары'}/>
+         </div>
+          <SaleBanner/>
+      </section>
+
+      <section className="products">
+        <div className="container">
+        <Products title={'С этим товаром покупают'}/>
         </div>
       </section>
-    </>
+</>
   );
 }

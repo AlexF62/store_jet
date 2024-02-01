@@ -6,6 +6,7 @@
     padding: 52px 20px 31px;
      width: 271px;
     transition: all .2s;
+   
     cursor: pointer;
    &:hover{
        box-shadow: 3px 3px 20px 0px rgba(50, 50, 50, 0.25);
@@ -26,7 +27,7 @@
         height: 22px;
        background-color: transparent;
        border: none;
-       z-index: 5;
+       z-index: 7;
     }
 }
 .product-card__price{
@@ -79,8 +80,6 @@
 }
 .product__cards-wrapper{
     display: flex;
-    align-items: center;
-    
-    width: 100%;
-    max-width: 271px;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
