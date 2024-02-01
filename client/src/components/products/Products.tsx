@@ -3,19 +3,21 @@ import React, { useState } from 'react';
 import Tab from '../tabs/Tab';
 import ProductCard from '../productСard/ProductCard';
 import './products.scss';
-import SaleBanner from '../sale/SaleBanner';
 import Link from 'next/link';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import { tabs } from '@/constans/productsTab';
 
-const Products = () => {
+interface ProductsProps {
+  title: string;
+}
+
+const Products:React.FC<ProductsProps> = ({title}) => {
   
   const [activeTab, setActiveTab] = useState(1);
 
   const settings = {
-    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -28,7 +30,7 @@ const Products = () => {
 
   return (
     <div className='products__inner'>
-      <h3 className="products__title">Популярные товары</h3>
+      <h3 className="products__title">{title}</h3>
       <div className="tabs-wrapper">
         <div className="tabs products__tabs">
           {tabs.map((tab) => (
@@ -64,7 +66,6 @@ const Products = () => {
           <div className="products__more">
             <Link className='products__more-link' href="#">Показать еще</Link>
           </div>
-          <SaleBanner/>
         </div>
       </div>
     </div>
