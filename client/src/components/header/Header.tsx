@@ -54,7 +54,7 @@ const Header = () => {
             <div className="container">
                <ul className="menu-categories">
                    <li className="menu-categories__item">
-                    <Link className='menu__categories__link' href='#'>Квадроциклы</Link>
+                    <Link className='menu__categories__link' href='/catalog/quadbike'>Квадроциклы</Link>
                    </li>
                    <li className="menu-categories__item">
                     <Link className='menu__categories__link' href='#'>Катера</Link>
