@@ -29,10 +29,10 @@ const Page = () => {
         <h2 className="catalog__title">Квадроциклы</h2>
         <div className="catalog__filter">
             <div className="catalog__filter-items">
-                <button>Полноприводные</button>
-                <button>от 5000</button>
-                <button>BRP</button>
-                <button>еще</button>
+                <button className='catalog__filter-items__btn'>Полноприводные</button>
+                <button className='catalog__filter-items__btn'>от 5000</button>
+                <button className='catalog__filter-items__btn'>BRP</button>
+                <button className='catalog__filter-items__btn'>еще</button>
             </div>
             <div className="catalog__filter-button">
                 <Select />
