@@ -1,14 +1,34 @@
+'use client'
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { MdArrowForwardIos } from "react-icons/md";
 import { CgDisplayGrid } from "react-icons/cg";
 import { RiMenuLine } from "react-icons/ri";
 import './quadbike.scss';
 import ProductCard from '@/components/productСard/ProductCard';
-import { Pagination } from '@mui/material';
 import Select from '@/components/select/Select';
+import Tab from '@/components/tabs/Tab';
+import Available from '@/components/availabledropdown/Available';
+import { Pagination } from '@mui/material';
+import NewDropDown from '@/components/newdropdown/NewDropDown';
+import PriceDropDown from '@/components/pricedropdown/PriceDropDown';
+import BrandDropDown from '@/components/branddropdown/BrandDropDown';
+import CountryDropDown from '@/components/countrydropdown/CountryDropDown';
+import SaleDropDown from '@/components/saledropdown/SaleDropDown';
+import SaleButton from '@/UI/SaleButton';
+import ShowMore from '@/UI/ShowMore';
 
 const Page = () => {
+  const tabsCategory = [
+    { index: 1, label: 'ПАРАМЕТРЫ' },
+    { index: 2, label: 'ПО МАРКЕ' },
+  ]
+
+  const [activeTab, setActiveTab] = useState(1);
+
+  const handleTabChange = (tabIndex:number) => {
+    setActiveTab(tabIndex);
+  };
 
     return (
     <div className='container'>
@@ -45,7 +65,21 @@ const Page = () => {
             </div>
         </div>
         <div className="catalog__inner">
-            <aside className="catalog__inner-aside"></aside>
+            <aside className="catalog__inner-aside aside-filter">
+            {tabsCategory.map((tab) => (
+              <Tab key={tab.index} index={tab.index} activeTab={activeTab} onClick={() => handleTabChange(tab.index)} label={tab.label}/>
+            ))}
+           <div className="aside-filter__form">
+            <div className="aside-filter__list">
+              <Available/>
+              <NewDropDown/>
+              <PriceDropDown/>
+              <BrandDropDown/>
+              <SaleDropDown/>
+              <CountryDropDown/>
+            </div>
+           </div>
+         </aside>
             <div className="catalog__inner-list">
                 <ProductCard/>
             </div>
