@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
 
 const options = [
+  { value: 60, label: 60 },
   { value: 90, label: 90 },
   { value: 130, label: 130 },
   { value: 154, label: 154 },
@@ -8,7 +9,7 @@ const options = [
   { value: 300, label: 300 },
 ];
 
-const SelectPrice = ({ className }: { className: string }) => {
+const SelectPower = ({ className }: { className: string }) => {
   const [selectedOption, setSelectedOption] = useState<string>('');
 
   const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -17,7 +18,7 @@ const SelectPrice = ({ className }: { className: string }) => {
 
   return (
     <select className={className} onChange={handleSelectChange} value={selectedOption}>
-      <option>90</option>
+      <option>50</option>
       {options.map((option, index) => (
         <option key={index} value={option.value}>
           {option.label}
@@ -27,4 +28,4 @@ const SelectPrice = ({ className }: { className: string }) => {
   );
 };
 
-export default SelectPrice;
+export default SelectPower;

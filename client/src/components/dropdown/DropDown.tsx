@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { FormControlLabel, Checkbox, Select } from '@mui/material';
+import { FormControlLabel, Checkbox } from '@mui/material';
 import { MdOutlineKeyboardArrowUp, MdKeyboardArrowDown } from 'react-icons/md';
 import AsideTitle from '@/UI/AsideTitle';
+import './dropdown.scss'
 import ShowMore from '@/UI/ShowMore';
-import SaleButton from '@/UI/SaleButton';
 
 interface CheckboxItemProps {
   label: string;
@@ -22,7 +22,13 @@ const CheckboxItem: React.FC<CheckboxItemProps> = ({ label }) => {
   );
 };
 
-const CountryDropDown = () => {
+interface BrandDropDownProps {
+  title: string;
+  items: string[];
+  showMoreVisible: boolean;
+}
+
+const DropDown: React.FC<BrandDropDownProps> = ({ title, items, showMoreVisible }) => {
   const [checkboxesVisible, setCheckboxesVisible] = useState(true);
 
   const toggleCheckboxesVisibility = () => {
@@ -36,20 +42,17 @@ const CountryDropDown = () => {
       ) : (
         <MdOutlineKeyboardArrowUp className='aside-filter__arrow' />
       )}
-      <AsideTitle title='Страны' className='aside-filter__item-title' />
+      <AsideTitle title={title} className='aside-filter__item-title' />
       <div className={`aside-filter__content${checkboxesVisible ? '' : ' hidden'}`}>
         <div className='aside-filter__contents-box'>
-          <CheckboxItem label='Россия' />
-          <CheckboxItem  label='Германия' />
-          <CheckboxItem label='Китай' />
-          <CheckboxItem label='США' />
+          {items.map((item, index) => (
+            <CheckboxItem key={index} label={item} />
+          ))}
         </div>
-        <ShowMore className='filter-more'>Показать еще</ShowMore>
+        {showMoreVisible && <ShowMore className='filter-more'>Показать еще</ShowMore>}
       </div>
-      <SaleButton className='filter-btn__send' backgroundColor='transparent' color='#bdbec2'>Выбрать</SaleButton>
-      <ShowMore className='filter-btn__reset'>Сбросить фильтр</ShowMore>
     </li>
   );
 };
 
-export default CountryDropDown;
+export default DropDown;

@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { MdOutlineKeyboardArrowUp, MdKeyboardArrowDown } from 'react-icons/md';
 import AsideTitle from '@/UI/AsideTitle';
 import { Slider } from '@mui/material';
-import './pricepropdown.scss';
-import SelectPrice from '../selectprice/SelectPrice';
+import './pricepropdown.scss'
+import SelectPower from '../selectpower/SelectPower';
 
-const PriceDropDown = () => {
+
+const DropDown = () => {
   const [checkboxesVisible, setCheckboxesVisible] = useState(true);
   const [value, setValue] = useState<number[]>([400000, 600000]);
 
@@ -50,15 +51,15 @@ const PriceDropDown = () => {
         <div className="aside-filter__item-list">
           <div className="filter__item-list">
             <span className='filter__item-list__title'>Мощность, л.с.</span>
-            <SelectPrice className='filter__item-select'/>
+            <SelectPower className='filter__item-select'/>
           </div>
           <div className="filter__item-list">
             <span className='filter__item-list__title'>Мощность двигателя, л.с.</span>
-            <SelectPrice className='filter__item-select'/>
+            <SelectPower className='filter__item-select'/>
           </div>
           <div className="filter__item-list">
             <span className='filter__item-list__title'>Макс. скорость</span>
-            <SelectPrice className='filter__item-select'/>
+            <SelectPower className='filter__item-select'/>
           </div>
         </div>
       </div>
@@ -66,4 +67,4 @@ const PriceDropDown = () => {
   );
 };
 
-export default PriceDropDown;
+export default DropDown;

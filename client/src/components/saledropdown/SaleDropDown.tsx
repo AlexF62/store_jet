@@ -18,7 +18,7 @@ const ModelDropDown = () => {
       ) : (
         <MdOutlineKeyboardArrowUp className='aside-filter__arrow' />
       )}
-      <AsideTitle title='Модели' className='aside-filter__item-title' />
+      <AsideTitle title='Акции' className='aside-filter__item-title' />
       <div className={`aside-filter__content${buttonsVisible ? '' : ' hidden'}`}>
         <div className='aside-filter__content-box'>
           <SaleButton className='aside-filter__content-button' color='white' backgroundColor='#1c62cd'>SALE</SaleButton>

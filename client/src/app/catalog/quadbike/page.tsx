@@ -8,23 +8,21 @@ import './quadbike.scss';
 import ProductCard from '@/components/productСard/ProductCard';
 import Select from '@/components/select/Select';
 import Tab from '@/components/tabs/Tab';
-import Available from '@/components/availabledropdown/Available';
 import { Pagination } from '@mui/material';
-import NewDropDown from '@/components/newdropdown/NewDropDown';
-import PriceDropDown from '@/components/pricedropdown/PriceDropDown';
-import BrandDropDown from '@/components/branddropdown/BrandDropDown';
-import CountryDropDown from '@/components/countrydropdown/CountryDropDown';
 import SaleDropDown from '@/components/saledropdown/SaleDropDown';
+import PriceDropDown from '@/components/pricedropdown/PriceDropDown';
+import DropDown from '@/components/dropdown/DropDown';
 import SaleButton from '@/UI/SaleButton';
 import ShowMore from '@/UI/ShowMore';
 
 const Page = () => {
+
   const tabsCategory = [
     { index: 1, label: 'ПАРАМЕТРЫ' },
     { index: 2, label: 'ПО МАРКЕ' },
-  ]
+]
 
-  const [activeTab, setActiveTab] = useState(1);
+const [activeTab, setActiveTab] = useState(1);
 
   const handleTabChange = (tabIndex:number) => {
     setActiveTab(tabIndex);
@@ -71,13 +69,15 @@ const Page = () => {
             ))}
            <div className="aside-filter__form">
             <div className="aside-filter__list">
-              <Available/>
-              <NewDropDown/>
+              <DropDown title="Наличие" items={[ 'В наличии', 'Под заказ']} showMoreVisible={false} />
+              <DropDown title="Новинки" items={['Все', 'Новинки', 'Акции']} showMoreVisible={false} />
               <PriceDropDown/>
-              <BrandDropDown/>
+              <DropDown title="Бренды" items={['BRP', 'Spark 2', 'Spark 3']} showMoreVisible={true} />
               <SaleDropDown/>
-              <CountryDropDown/>
+              <DropDown title="Страны" items={['Россия', 'Германия', 'Китай', 'США']}  showMoreVisible={true}/>
             </div>
+            <SaleButton className='filter-btn__send' backgroundColor='transparent' color='#bdbec2'>Выбрать</SaleButton>
+            <ShowMore className='filter-btn__reset'>Сбросить фильтр</ShowMore>
            </div>
          </aside>
             <div className="catalog__inner-list">
