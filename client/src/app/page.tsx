@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense} from 'react';
 import './globals.scss';
 import Banner from '@/components/banner/Banner';
 import TabsPage from '@/components/tabs/Tabs';

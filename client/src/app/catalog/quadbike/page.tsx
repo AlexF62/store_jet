@@ -1,14 +1,32 @@
+'use client'
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { MdArrowForwardIos } from "react-icons/md";
 import { CgDisplayGrid } from "react-icons/cg";
 import { RiMenuLine } from "react-icons/ri";
 import './quadbike.scss';
 import ProductCard from '@/components/productСard/ProductCard';
-import { Pagination } from '@mui/material';
 import Select from '@/components/select/Select';
+import Tab from '@/components/tabs/Tab';
+import { Pagination } from '@mui/material';
+import SaleDropDown from '@/components/saledropdown/SaleDropDown';
+import PriceDropDown from '@/components/pricedropdown/PriceDropDown';
+import DropDown from '@/components/dropdown/DropDown';
+import SaleButton from '@/UI/SaleButton';
+import ShowMore from '@/UI/ShowMore';
 
 const Page = () => {
+
+  const tabsCategory = [
+    { index: 1, label: 'ПАРАМЕТРЫ' },
+    { index: 2, label: 'ПО МАРКЕ' },
+]
+
+const [activeTab, setActiveTab] = useState(1);
+
+  const handleTabChange = (tabIndex:number) => {
+    setActiveTab(tabIndex);
+  };
 
     return (
     <div className='container'>
@@ -45,7 +63,23 @@ const Page = () => {
             </div>
         </div>
         <div className="catalog__inner">
-            <aside className="catalog__inner-aside"></aside>
+            <aside className="catalog__inner-aside aside-filter">
+            {tabsCategory.map((tab) => (
+              <Tab key={tab.index} index={tab.index} activeTab={activeTab} onClick={() => handleTabChange(tab.index)} label={tab.label}/>
+            ))}
+           <div className="aside-filter__form">
+            <div className="aside-filter__list">
+              <DropDown title="Наличие" items={[ 'В наличии', 'Под заказ']} showMoreVisible={false} />
+              <DropDown title="Новинки" items={['Все', 'Новинки', 'Акции']} showMoreVisible={false} />
+              <PriceDropDown/>
+              <DropDown title="Бренды" items={['BRP', 'Spark 2', 'Spark 3']} showMoreVisible={true} />
+              <SaleDropDown/>
+              <DropDown title="Страны" items={['Россия', 'Германия', 'Китай', 'США']}  showMoreVisible={true}/>
+            </div>
+            <SaleButton className='filter-btn__send' backgroundColor='transparent' color='#bdbec2'>Выбрать</SaleButton>
+            <ShowMore className='filter-btn__reset'>Сбросить фильтр</ShowMore>
+           </div>
+         </aside>
             <div className="catalog__inner-list">
                 <ProductCard/>
             </div>
