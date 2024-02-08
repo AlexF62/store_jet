@@ -3,8 +3,7 @@ import { MdOutlineKeyboardArrowUp, MdKeyboardArrowDown } from 'react-icons/md';
 import AsideTitle from '@/UI/AsideTitle';
 import { Slider } from '@mui/material';
 import './pricepropdown.scss'
-import SelectPower from '../selectpower/SelectPower';
-
+import FilterItem from '../filteritem/FilterItem';
 
 const DropDown = () => {
   const [checkboxesVisible, setCheckboxesVisible] = useState(true);
@@ -49,18 +48,9 @@ const DropDown = () => {
           onChange={(e) => setValue([value[0], parseInt(e.target.value)])}
         />
         <div className="aside-filter__item-list">
-          <div className="filter__item-list">
-            <span className='filter__item-list__title'>Мощность, л.с.</span>
-            <SelectPower className='filter__item-select'/>
-          </div>
-          <div className="filter__item-list">
-            <span className='filter__item-list__title'>Мощность двигателя, л.с.</span>
-            <SelectPower className='filter__item-select'/>
-          </div>
-          <div className="filter__item-list">
-            <span className='filter__item-list__title'>Макс. скорость</span>
-            <SelectPower className='filter__item-select'/>
-          </div>
+          <FilterItem title='Мощность, л.с.'/>
+          <FilterItem title='Мощность двигателя, л.с.'/>
+          <FilterItem title='Макс. скорость'/>
         </div>
       </div>
     </li>

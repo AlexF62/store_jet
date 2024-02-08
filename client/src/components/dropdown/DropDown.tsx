@@ -1,34 +1,18 @@
 import React, { useState } from 'react';
-import { FormControlLabel, Checkbox } from '@mui/material';
 import { MdOutlineKeyboardArrowUp, MdKeyboardArrowDown } from 'react-icons/md';
 import AsideTitle from '@/UI/AsideTitle';
 import './dropdown.scss'
 import ShowMore from '@/UI/ShowMore';
+import CheckBoxItem from '../checkboxitem/CheckBoxItem';
+// Import CheckboxItem component
 
-interface CheckboxItemProps {
-  label: string;
-}
-
-const CheckboxItem: React.FC<CheckboxItemProps> = ({ label }) => {
-  const handleCheckboxClick = (event: { stopPropagation: () => void }) => {
-    event.stopPropagation();
-  };
-
-  return (
-    <FormControlLabel
-      control={<Checkbox size="small" onClick={handleCheckboxClick} />}
-      label={label}
-    />
-  );
-};
-
-interface BrandDropDownProps {
+interface DropDownProps {
   title: string;
   items: string[];
   showMoreVisible: boolean;
 }
 
-const DropDown: React.FC<BrandDropDownProps> = ({ title, items, showMoreVisible }) => {
+const DropDown: React.FC<DropDownProps> = ({ title, items, showMoreVisible }) => {
   const [checkboxesVisible, setCheckboxesVisible] = useState(true);
 
   const toggleCheckboxesVisibility = () => {
@@ -46,7 +30,7 @@ const DropDown: React.FC<BrandDropDownProps> = ({ title, items, showMoreVisible 
       <div className={`aside-filter__content${checkboxesVisible ? '' : ' hidden'}`}>
         <div className='aside-filter__contents-box'>
           {items.map((item, index) => (
-            <CheckboxItem key={index} label={item} />
+            <CheckBoxItem key={index} label={item} />
           ))}
         </div>
         {showMoreVisible && <ShowMore className='filter-more'>Показать еще</ShowMore>}
