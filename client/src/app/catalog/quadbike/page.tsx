@@ -17,6 +17,10 @@ import ShowMore from '@/UI/ShowMore';
 
 const Page = () => {
 
+  const [filterByBRP, setFilterByBRP] = useState(false);
+  const [filterByPrice, setFilterByPrice] = useState(false)
+  const [filterByPower, setFilterByPower] = useState(false)
+  
   const tabsCategory = [
     { index: 1, label: 'ПАРАМЕТРЫ' },
     { index: 2, label: 'ПО МАРКЕ' },
@@ -47,9 +51,9 @@ const [activeTab, setActiveTab] = useState(1);
         <h2 className="catalog__title">Квадроциклы</h2>
         <div className="catalog__filter">
             <div className="catalog__filter-items">
-                <button className='catalog__filter-items__btn'>Полноприводные</button>
-                <button className='catalog__filter-items__btn'>от 5000</button>
-                <button className='catalog__filter-items__btn'>BRP</button>
+                <button className='catalog__filter-items__btn' onClick={() => setFilterByPower(!filterByPower)}>Полноприводные</button>
+                <button className='catalog__filter-items__btn'  onClick={() => setFilterByPrice(!filterByPrice)}>от 200000</button>
+                <button className='catalog__filter-items__btn' onClick={() => setFilterByBRP(!filterByBRP)}>BRP</button>
                 <button className='catalog__filter-items__btn'>еще</button>
             </div>
             <div className="catalog__filter-button">
@@ -81,7 +85,7 @@ const [activeTab, setActiveTab] = useState(1);
            </div>
          </aside>
             <div className="catalog__inner-list">
-                <ProductCard/>
+                <ProductCard filterByBRP={filterByBRP} filterByPrice={filterByPrice} filterByPower={filterByPower}/>
             </div>
         </div>
         <div className="pagination">
