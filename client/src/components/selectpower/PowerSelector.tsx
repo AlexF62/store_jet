@@ -9,7 +9,7 @@ const options = [
   { value: 300, label: 300 },
 ];
 
-const SelectPower = ({ className }: { className: string }) => {
+const PowerSelector = ({ className }: { className: string }) => {
   const [selectedOption, setSelectedOption] = useState<string>('');
 
   const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -28,4 +28,4 @@ const SelectPower = ({ className }: { className: string }) => {
   );
 };
 
-export default SelectPower;
+export default PowerSelector;
