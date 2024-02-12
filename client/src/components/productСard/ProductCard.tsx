@@ -14,25 +14,24 @@ const Product: React.FC<ProductProps> = ({ filterByBRP, filterByPrice, filterByP
   const { data } = useGetAllQuery();
   const products = data?.products || [];
 
-  let filteredProducts = [...products];
-
-  if (filterByBRP) {
-    filteredProducts = filteredProducts.filter(product => product.description && product.description.includes('BRP'));
-  }
-
-  if (filterByPrice) {
-    filteredProducts = filteredProducts.filter(product => product.price >= 200000);
-  }
-
-  if (filterByPower) {
-    filteredProducts = filteredProducts.filter(product => product.description && product.description.includes('900'));
-  }
+  const filteredProducts = products.filter(product => {
+    if (filterByBRP && !product.description?.includes('BRP')) {
+      return false;
+    }
+    if (filterByPrice && product.price < 200000) {
+      return false;
+    }
+    if (filterByPower && !product.description?.includes('900')) {
+      return false;
+    }
+    return true;
+  });
 
   return (
     <div className="product__cards">
       <div className="product__cards-items">
         <div className="product__cards-wrapper">
-          {filteredProducts.map((product) => (
+          {filteredProducts.map(product => (
             <div key={product.name} className="product__cards-item">
               <Favorite className="product__card-favorite" />
               <a href="#" className="product__card-hover__text">посмотреть товар</a>
