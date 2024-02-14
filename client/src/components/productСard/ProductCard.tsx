@@ -4,13 +4,18 @@ import Favorite from '@/UI/Favorite';
 import Cart from '@/UI/Cart';
 import { useGetAllQuery } from '@/services/product.service';
 import './product.scss';
+
 interface ProductProps {
   filterByBRP: boolean;
   filterByPrice: boolean;
   filterByPower: boolean;
+  filterBySpark: boolean;
+  filterByCountry: boolean;
+  FilterBySale: boolean;
+  filterByPriceSlider: boolean;
 }
 
-const Product: React.FC<ProductProps> = ({ filterByBRP, filterByPrice, filterByPower }) => {
+const Product: React.FC<ProductProps> = ({ filterByBRP, filterByPrice, filterByPower, filterBySpark, filterByCountry, FilterBySale,filterByPriceSlider }) => {
   const { data } = useGetAllQuery();
   const products = data?.products || [];
 
@@ -22,6 +27,18 @@ const Product: React.FC<ProductProps> = ({ filterByBRP, filterByPrice, filterByP
       return false;
     }
     if (filterByPower && !product.description?.includes('900')) {
+      return false;
+    }
+    if (filterBySpark && !(product.description?.includes('SPARK 2') || product.description?.includes('SPARK 3'))) {
+      return false;
+    }
+    if (filterByCountry && !(product.slug?.includes('Россия') || product.slug?.includes('Германия') || product.slug?.includes('Китай') || product.slug?.includes('США'))) {
+      return false;
+    }
+    if(FilterBySale && product.price === undefined) {
+      return false;
+    }
+    if (filterByPriceSlider && (product.price < 400000 || product.price > 5000000)) {
       return false;
     }
     return true;
