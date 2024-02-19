@@ -48,17 +48,17 @@ const Products:React.FC<ProductsProps> = ({title}) => {
             <Slider {...settings}>
               <div className='slider-tab'>
                 <div className='slider-tab__item'>
-                <ProductCard />
+                <ProductCard filterByBRP={false} filterByPrice={false} filterByPower={false} filterBySpark={false} filterByCountry={false} FilterBySale={false} filterByPriceSlider={false} cardsPerPage={4} offset={0} />
                 </div>
             </div>
               <div className='slider-tab'>
                 <div>
-                <ProductCard />
+                <ProductCard filterByBRP={false} filterByPrice={false} filterByPower={false} filterBySpark={false} filterByCountry={false} FilterBySale={false} filterByPriceSlider={false} cardsPerPage={4} offset={0} />
                 </div>
             </div>
               <div className='slider-tab'>
                 <div>
-                <ProductCard />
+                <ProductCard filterByBRP={false} filterByPrice={false} filterByPower={false} filterBySpark={false} filterByCountry={false} FilterBySale={false} filterByPriceSlider={false} cardsPerPage={4} offset={0} />
                 </div>
             </div>
               </Slider>

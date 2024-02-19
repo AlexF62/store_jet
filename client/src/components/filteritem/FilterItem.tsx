@@ -1,16 +1,17 @@
 import React from 'react';
-import SelectPower from '../selectpower/SelectPower';
-import './filteritem.scss'
-
+import './filteritem.scss';
+import PowerSelector from '../powerselector/PowerSelector';
 interface FilterItemProps {
     title: string;
-   }
+    selected: boolean; 
+    onClick: () => void;
+}
 
-const FilterItem: React.FC<FilterItemProps> = ({ title }) => (
-    <div className="filter__item-list">
-    <span className='filter__item-list__title'>{title}</span>
-    <SelectPower className='filter__item-select'/>
-  </div>
+const FilterItem: React.FC<FilterItemProps> = ({ title, selected }) => (
+    <div className={`filter__item-list ${selected ? 'selected' : ''}`}>
+        <span className='filter__item-list__title'>{title}</span>
+        <PowerSelector className='filter__item-select' />
+    </div>
 );
 
 export default FilterItem;
