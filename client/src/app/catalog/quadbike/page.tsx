@@ -1,6 +1,6 @@
-'use client';
-import Link from 'next/link';
+'use client'
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { CgDisplayGrid } from 'react-icons/cg';
 import { RiMenuLine } from 'react-icons/ri';
@@ -14,12 +14,13 @@ import PriceDropDown from '@/components/pricedropdown/PriceDropDown';
 import DropDown from '@/components/dropdown/DropDown';
 import SaleButton from '@/UI/SaleButton';
 import ShowMore from '@/UI/ShowMore';
-
 interface Filters {
   filterByBRP: boolean;
+  filterBySale:boolean;
   filterByPrice: boolean;
   filterByPriceSlider: boolean;
   filterByPower: boolean;
+  filterByEngine: boolean;
   filterBySpark: boolean;
   filterByCountry: boolean;
   FilterBySale: boolean;
@@ -31,9 +32,11 @@ interface Filters {
 
 const initialFilters: Filters = {
   filterByBRP: false,
+  filterBySale: false,
   filterByPrice: false,
   filterByPriceSlider: false,
   filterByPower: false,
+  filterByEngine: false,
   filterBySpark: false,
   filterByCountry: false,
   FilterBySale: false,
@@ -44,10 +47,16 @@ const initialFilters: Filters = {
 };
 
 const Page = () => {
+  const tabs = [
+    { index: 1, label: 'ПАРАМЕТРЫ' },
+    { index: 2, label: 'ПО МАРКЕ' }
+  ];
+
   const [filters, setFilters] = useState<Filters>(initialFilters);
   const [activeTab, setActiveTab] = useState<number>(1);
-
-  const handleTabChange = (tabIndex: number) => {
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  
+const handleTabChange = (tabIndex: number) => {
     setActiveTab(tabIndex);
   };
 
@@ -71,7 +80,7 @@ const Page = () => {
         ? selection.includes('Spark 2') || selection.includes('Spark 3')
         : selection.includes('РОССИЯ') ||
           selection.includes('ГЕРМАНИЯ') ||
-          selection.includes('Китай') ||
+          selection.includes('КИТАЙ') ||
           selection.includes('США');
 
     setFilters(prevFilters => ({
@@ -84,20 +93,27 @@ const Page = () => {
   };
 
   const handleSaleSelectionChange = (selectedSale: string[]) => {
+    const filterBySale = selectedSale.includes('SALE');
     setFilters(prevFilters => ({
       ...prevFilters,
       selectedSale,
-      FilterBySale: !!selectedSale.length,
+      FilterBySale: filterBySale,
     }));
   };
-
-  const handlePriceFilterChange = (filterType: string, value: number | string[] | number[]) => {
+  
+const handlePriceFilterChange = (filterType: string, value: number | string[] | number[]) => {
     setFilters(prevFilters => ({
       ...prevFilters,
       selectedPrice: Array.isArray(value) ? value.map(String) : [String(value)],
       filterByPriceSlider: Array.isArray(value) ? !!value.length : true,
     }));
   };
+
+  const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
+    setCurrentPage(page);
+  };
+
+  const offset = (currentPage - 1) * 12;
 
   return (
     <div className="container">
@@ -150,14 +166,14 @@ const Page = () => {
         </div>
         <div className="catalog__inner">
           <aside className="catalog__inner-aside aside-filter">
-            {[{ index: 1, label: 'ПАРАМЕТРЫ' }, { index: 2, label: 'ПО МАРКЕ' }].map(
+            {tabs.map(
               tab => (
                 <Tab
-                  key={tab.index}
-                  index={tab.index}
-                  activeTab={activeTab}
-                  onClick={() => handleTabChange(tab.index)}
-                  label={tab.label}
+                key={tab.index}
+                index={tab.index}
+                activeTab={activeTab} 
+                onClick={() => handleTabChange(tab.index)}
+                label={tab.label}
                 />
               )
             )}
@@ -169,7 +185,7 @@ const Page = () => {
                   showMoreVisible={false}
                   onSelectionChange={handleSaleSelectionChange}
                 />
-                <PriceDropDown onFilterChange={handlePriceFilterChange} />
+                <PriceDropDown onFilterChange={handlePriceFilterChange}/> 
                 <DropDown
                   title="Бренды"
                   items={['BRP', 'Spark 2', 'Spark 3']}
@@ -178,10 +194,10 @@ const Page = () => {
                     handleBrandCountrySelectionChange(selection, 'selectedBrands')
                   }
                 />
-                <SaleDropDown />
+                <SaleDropDown  onSaleSelectionChange={handleSaleSelectionChange}/>
                 <DropDown
                   title="Страны"
-                  items={['Россия', 'Германия', 'Китай', 'США']}
+                  items={['РОССИЯ', 'ГЕРМАНИЯ', 'КИТАЙ', 'США']}
                   showMoreVisible={true}
                   onSelectionChange={selection =>
                     handleBrandCountrySelectionChange(selection, 'selectedCountries')
@@ -195,11 +211,11 @@ const Page = () => {
             </div>
           </aside>
           <div className="catalog__inner-list">
-            <ProductCard {...filters} />
+            <ProductCard cardsPerPage={12} {...filters} offset={offset}/>
           </div>
         </div>
         <div className="pagination">
-          <Pagination count={5} variant="outlined" shape="rounded" color="primary" />
+          <Pagination count={2} variant="outlined" shape="rounded" color="primary" onChange={handlePageChange}/>
         </div>
       </div>
     </div>

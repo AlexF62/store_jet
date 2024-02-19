@@ -4,6 +4,7 @@ interface SaleButtonProps {
   color?: string;
   children: React.ReactNode;
   className: string;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const SaleButton: React.FC<SaleButtonProps> = ({
